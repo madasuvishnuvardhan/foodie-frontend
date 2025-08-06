@@ -1,0 +1,22 @@
+<h2>All Restaurants</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Cuisine</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let restaurant of restaurants">
+      <td>{{ restaurant.name }}</td>
+      <td>{{ restaurant.location }}</td>
+      <td>{{ restaurant.cuisine }}</td>
+      <td>
+        <button (click)="editRestaurant(restaurant.id)">Edit</button>
+        <button (click)="deleteRestaurant(restaurant.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

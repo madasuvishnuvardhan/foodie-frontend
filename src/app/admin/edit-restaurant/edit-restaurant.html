@@ -1,0 +1,13 @@
+<h2>Edit Restaurant</h2>
+<form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+  <label>Name:</label>
+  <input type="text" formControlName="name" />
+
+  <label>Location:</label>
+  <input type="text" formControlName="location" />
+
+  <label>Cuisine:</label>
+  <input type="text" formControlName="cuisine" />
+
+  <button type="submit">Update</button>
+</form>

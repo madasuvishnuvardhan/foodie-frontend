@@ -1,0 +1,19 @@
+<h2>All Dishes</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Restaurant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dish of dishes">
+      <td>{{ dish.name }}</td>
+      <td>₹{{ dish.price }}</td>
+      <td>{{ dish.description }}</td>
+      <td>{{ dish.restaurant?.name || 'N/A' }}</td>
+    </tr>
+  </tbody>
+</table>

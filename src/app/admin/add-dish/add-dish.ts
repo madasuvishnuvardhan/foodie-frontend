@@ -1,61 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RestaurantService } from '../../services/restaurant.service';
-import { DishService } from '../../services/dish.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { DishService } from '../../services/dish.service';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-add-dish',
-  imports: [
-    CommonModule,           // For *ngFor, *ngIf, etc.
-    ReactiveFormsModule     // For formGroup, formControlName
-  ],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-dish.html',
   styleUrls: ['./add-dish.scss']
 })
 export class AddDish implements OnInit {
-  addDishForm!: FormGroup;
+  dishForm!: FormGroup;
   restaurants: any[] = [];
-constructor(
-  private fb: FormBuilder,
-  private restaurantService: RestaurantService,
-  private dishService: DishService
-) {}
 
+  constructor(
+    private fb: FormBuilder,
+    private dishService: DishService,
+    private restaurantService: RestaurantService
+  ) {}
 
   ngOnInit(): void {
-    this.addDishForm = this.fb.group({
-      dishName: ['', Validators.required],
-      price: ['', Validators.required],
+    this.dishForm = this.fb.group({
+      name: ['', Validators.required],
+      price: [0, Validators.required],
+      description: [''],
       restaurantId: ['', Validators.required]
     });
 
     this.restaurantService.getAllRestaurants().subscribe({
-      next: (data: any) => {
-        this.restaurants = data;
-      },
-      error: (err: any) => {
-        console.error('Error fetching restaurants:', err);
-      }
+      next: (data: any) => this.restaurants = data as any[],
+      error: (err) => console.error(err)
     });
   }
 
-onSubmit() {
-  if (this.addDishForm.valid) {
-    this.dishService.addDish(this.addDishForm.value).subscribe({
-      next: () => {
-        alert('Dish added successfully');
-        this.addDishForm.reset();
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Failed to add dish');
-      }
-    });
+  onSubmit() {
+    if (this.dishForm.valid) {
+      this.dishService.addDish(this.dishForm.value).subscribe({
+        next: () => alert('Dish added successfully'),
+        error: (err) => console.error(err)
+      });
+    }
   }
-}
-
-
 }

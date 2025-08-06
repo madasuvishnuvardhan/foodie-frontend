@@ -15,4 +15,7 @@ export const routes: Routes = [
   { path: 'admin/add-dish', component: AddDish, canActivate: [authGuard] },
   { path: 'restaurant/:id/dishes', component: DishList },
   { path: 'cart', component: Cart },
+  {path: 'admin/edit-restaurant/:id',loadComponent: () =>import('./admin/edit-restaurant/edit-restaurant').then(m => m.EditRestaurantComponent)},
+  {
+  path: 'admin/add-dish',loadComponent: () =>import('./admin/add-dish/add-dish').then(m => m.AddDish)}
 ];
