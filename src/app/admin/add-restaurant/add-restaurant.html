@@ -1,0 +1,14 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Add New Restaurant</h2>
+  <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Restaurant Name</label>
+      <input type="text" id="name" formControlName="name" class="form-control" placeholder="Enter name">
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" id="location" formControlName="location" class="form-control" placeholder="Enter location">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="restaurantForm.invalid">Add Restaurant</button>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+<form [formGroup]="addDishForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="dishName" placeholder="Dish Name" />
+  <input type="number" formControlName="price" placeholder="Price" />
+  
+  <select formControlName="restaurantId">
+    <option *ngFor="let restaurant of restaurants" [value]="restaurant.id">
+      {{ restaurant.name }}
+    </option>
+  </select>
+
+  <button type="submit">Add Dish</button>
+</form>
