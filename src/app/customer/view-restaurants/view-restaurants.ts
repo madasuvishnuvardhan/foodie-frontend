@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-view-restaurants',
+  imports: [CommonModule],
   templateUrl: './view-restaurants.html'
 })
 export class ViewRestaurants implements OnInit {

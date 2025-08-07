@@ -5,8 +5,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-cart',
   imports: [CommonModule],
-  templateUrl: './cart.html',
-  styleUrls: ['./cart.scss']
+  templateUrl: './cart.html'
 })
 export class Cart implements OnInit {
   cartItems: any[] = [];
@@ -15,30 +14,17 @@ export class Cart implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.loadCart();
-  }
-
-  loadCart(): void {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartItems = this.cartService.getCart();
     this.calculateTotal();
   }
 
-  calculateTotal(): void {
+  remove(index: number) {
+    this.cartService.removeFromCart(index);
+    this.cartItems = this.cartService.getCart();
+    this.calculateTotal();
+  }
+
+  calculateTotal() {
     this.total = this.cartItems.reduce((sum, item) => sum + item.price, 0);
-  }
-
-  removeItem(id: string): void {
-    this.cartService.removeFromCart(id);
-    this.loadCart();
-  }
-
-  clearCart(): void {
-    this.cartService.clearCart();
-    this.loadCart();
-  }
-
-  checkout(): void {
-    alert('Checkout successful!');
-    this.clearCart();
   }
 }

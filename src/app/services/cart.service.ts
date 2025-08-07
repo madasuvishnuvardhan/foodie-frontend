@@ -4,21 +4,30 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: any[] = [];
+  private key = 'foodie_cart';
 
-  addToCart(item: any): void {
-    this.cartItems.push(item);
+  getCart(): any[] {
+    return JSON.parse(localStorage.getItem(this.key) || '[]');
   }
 
-  getCartItems(): any[] {
-    return this.cartItems;
+  addToCart(item: any) {
+    const cart = this.getCart();
+    cart.push(item);
+    localStorage.setItem(this.key, JSON.stringify(cart));
   }
 
-  removeFromCart(id: string): void {
-    this.cartItems = this.cartItems.filter(item => item.id !== id);
+  removeFromCart(index: number) {
+    const cart = this.getCart();
+    cart.splice(index, 1);
+    localStorage.setItem(this.key, JSON.stringify(cart));
   }
 
-  clearCart(): void {
-    this.cartItems = [];
+  clearCart() {
+    localStorage.removeItem(this.key);
+  }
+
+  getTotal(): number {
+    const cart = this.getCart();
+    return cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
   }
 }

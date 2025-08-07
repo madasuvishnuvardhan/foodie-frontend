@@ -1,1 +1,11 @@
-<p>dish-list works!</p>
+<h2>Dishes in Restaurant</h2>
+<div *ngIf="dishes.length === 0">No dishes found for this restaurant.</div>
+
+<div class="card mt-3" *ngFor="let dish of dishes">
+  <div class="card-body">
+    <h4>{{ dish.name }}</h4>
+    <p>{{ dish.description }}</p>
+    <p>Price: ₹{{ dish.price }}</p>
+    <button class="btn btn-success" (click)="addToCart(dish)">Add to Cart</button>
+  </div>
+</div>

@@ -1,16 +1,14 @@
-<div *ngIf="cartItems.length > 0; else emptyCart">
-  <h2>Your Cart</h2>
-  <ul>
-    <li *ngFor="let item of cartItems">
-      <strong>{{ item.name }}</strong> - ₹{{ item.price }}
-      <button (click)="removeItem(item.id)">Remove</button>
-    </li>
-  </ul>
-  <p><strong>Total:</strong> ₹{{ total }}</p>
-  <button (click)="checkout()">Checkout</button>
-  <button (click)="clearCart()">Clear Cart</button>
+<h2>Your Cart 🛒</h2>
+
+<div *ngIf="cartItems.length === 0">Cart is empty</div>
+
+<div class="card mb-3" *ngFor="let item of cartItems; let i = index">
+  <div class="card-body">
+    <h4>{{ item.name }}</h4>
+    <p>Price: ₹{{ item.price }}</p>
+    <button class="btn btn-danger btn-sm" (click)="remove(i)">Remove</button>
+  </div>
 </div>
 
-<ng-template #emptyCart>
-  <p>Your cart is empty.</p>
-</ng-template>
+<h4 *ngIf="cartItems.length > 0">Total: ₹{{ total }}</h4>
+<a class="btn btn-primary" routerLink="/customer/place-order" *ngIf="cartItems.length > 0">Place Order</a>
