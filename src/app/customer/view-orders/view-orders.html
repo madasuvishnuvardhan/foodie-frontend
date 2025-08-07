@@ -1,0 +1,13 @@
+<h2>Your Orders</h2>
+<div *ngIf="orders.length > 0; else noOrders">
+  <div *ngFor="let order of orders">
+    <p><strong>Order #{{ order.id }}</strong> - {{ order.date }}</p>
+    <p>Items: {{ order.items.join(', ') }}</p>
+    <p>Total: ₹{{ order.total }}</p>
+    <hr>
+  </div>
+</div>
+
+<ng-template #noOrders>
+  <p>No past orders found.</p>
+</ng-template>

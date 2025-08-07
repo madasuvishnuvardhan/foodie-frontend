@@ -10,7 +10,7 @@
           <a class="nav-link" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cart">Cart</a>
+          <a class="nav-link" routerLink="customer/cart">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/login">Admin Login</a>
@@ -21,6 +21,11 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/admin/add-dish">Add Dish</a>
         </li>
+        <!-- Inside navbar.component.html -->
+<li class="nav-item">
+  <a class="nav-link" (click)="logout()">Logout</a>
+</li>
+
       </ul>
     </div>
   </div>

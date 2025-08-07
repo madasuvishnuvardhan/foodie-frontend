@@ -1,0 +1,10 @@
+<h2>Available Restaurants</h2>
+<div *ngIf="restaurants.length === 0">No restaurants found.</div>
+
+<div class="card mt-3" *ngFor="let r of restaurants">
+  <div class="card-body">
+    <h4>{{ r.name }}</h4>
+    <p>{{ r.cuisine }} | {{ r.location }}</p>
+    <button class="btn btn-primary" (click)="viewDishes(r.id)">View Dishes</button>
+  </div>
+</div>

@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DishService } from '../services/dish.service';
-import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { OnInit } from '@angular/core';
+import { DishService } from '../services/dish.service'; // Adjust the import path as necessary
 
 @Component({
-  selector: 'app-view-dishes',
+  selector: 'app-viewdishes',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, RouterModule], // ✅ Add RouterModule here
   templateUrl: './viewdishes.html',
   styleUrls: ['./viewdishes.scss']
 })

@@ -30,9 +30,10 @@ export class AddDish implements OnInit {
     });
 
     this.restaurantService.getAllRestaurants().subscribe({
-      next: (data: any) => this.restaurants = data as any[],
+      next: (data) => this.restaurants = data,
       error: (err) => console.error(err)
     });
+
   }
 
   onSubmit() {

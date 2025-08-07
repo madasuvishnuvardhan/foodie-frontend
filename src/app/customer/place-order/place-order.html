@@ -1,0 +1,14 @@
+<div *ngIf="cartItems.length > 0; else emptyCart">
+  <h2>Place Order</h2>
+  <ul>
+    <li *ngFor="let item of cartItems">
+      {{ item.name }} - ₹{{ item.price }}
+    </li>
+  </ul>
+  <p><strong>Total:</strong> ₹{{ total }}</p>
+  <button (click)="placeOrder()">Place Order</button>
+</div>
+
+<ng-template #emptyCart>
+  <p>Your cart is empty. <a routerLink="/customer/dishes">Browse dishes</a></p>
+</ng-template>

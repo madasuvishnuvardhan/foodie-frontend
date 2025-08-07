@@ -14,6 +14,10 @@
       <td>₹{{ dish.price }}</td>
       <td>{{ dish.description }}</td>
       <td>{{ dish.restaurant?.name || 'N/A' }}</td>
+      <td><a [routerLink]="['/admin/edit-dish', dish.id]"><button>Edit</button>
+</a>
+
+</td>
     </tr>
   </tbody>
 </table>

@@ -1,0 +1,8 @@
+<h2>Menu</h2>
+<div *ngFor="let dish of dishes">
+  <h4>{{ dish.name }}</h4>
+  <p>Price: ₹{{ dish.price }}</p>
+  <p>{{ dish.description }}</p>
+  <a [routerLink]="['/admin/edit-dish', dish.id]" class="btn btn-sm btn-warning">Edit</a>
+
+</div>

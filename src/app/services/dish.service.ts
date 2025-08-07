@@ -24,7 +24,9 @@ export class DishService {
     return this.http.put(`${this.baseUrl}/dishes/${id}`, data);
   }
 
-  getDishById(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/dishes/${id}`);
-  }
+  getDishById(id: string): Observable<any> {
+  return this.http.get<any>(`http://localhost:3000/dishes/${id}`);
+}
+
+  
 }
